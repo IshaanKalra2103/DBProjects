@@ -1,0 +1,42 @@
+-- -- Create table1
+-- CREATE TABLE table1 (
+--     id INT PRIMARY KEY,
+--     name VARCHAR(50),
+--     age INT
+-- );
+-- -- Create table2
+-- CREATE TABLE table2 (
+--     id INT PRIMARY KEY,
+--     table1_id INT,
+--     address VARCHAR(100),
+--     FOREIGN KEY (table1_id) REFERENCES table1(id)
+-- );
+-- -- Insert dummy data into table1
+-- INSERT INTO table1 (id, name, age)
+-- VALUES (1, 'John Doe', 30),
+--     (2, 'Jane Smith', 25),
+--     (3, 'Alice Johnson', 28);
+-- -- Insert dummy data into table2
+-- INSERT INTO table2 (id, table1_id, address)
+-- VALUES (1, 1, '123 Main St'),
+--     (2, 2, '456 Oak St'),
+--     (3, 3, '789 Pine St');
+-- -- Join table1 and table2 based on table1_id
+-- SELECT t1.id,
+--     t1.name,
+--     t1.age,
+--     t2.address
+-- FROM table1 t1
+--     JOIN table2 t2 ON t1.id = t2.table1_id;
+SELECT *
+FROM table1;
+-- -- Conditional select where age is greater than 25
+-- SELECT t1.id,
+--     t1.name,
+--     t1.age,
+--     t2.address
+-- FROM table1 t1
+--     JOIN table2 t2 ON t1.id = t2.table1_id
+-- WHERE t1.age > 25;
+-- DROP TABLE table1;
+-- DROP TABLE table2;
