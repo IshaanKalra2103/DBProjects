@@ -7802,24 +7802,6 @@ This structured approach ensures that the newly designed database meets the oper
 <p>This section is subdivided into three subsections:</p>
 <h3 id="1.-Relational-Schema"><strong>1. Relational Schema</strong><a class="anchor-link" href="#1.-Relational-Schema">¶</a></h3><img alt="No description has been provided for this image" height="800px" src="assets/schema.png" width="800px"/>
 <img alt="No description has been provided for this image" height="500px" src="assets/graphviz.svg" width="500px"/>
-<h2 id="Relational-Design-Notation"><strong>Relational Design Notation</strong><a class="anchor-link" href="#Relational-Design-Notation">¶</a></h2><h3 id="Books-(title)"><strong>Books</strong> (<em>title</em>)<a class="anchor-link" href="#Books-(title)">¶</a></h3><p>→ <strong>Editions</strong> (<em>isbn</em>, title, pub_date, edition, main_language, other_languages, dimensions, series, physical_features, notes, url, national_lib_id)</p>
-<h3 id="Editions-(isbn)"><strong>Editions</strong> (<em>isbn</em>)<a class="anchor-link" href="#Editions-(isbn)">¶</a></h3><p>→ <strong>Publications</strong> (<em>isbn</em>, publisher, pub_place, copyright)<br/>
-→ <strong>Copies</strong> (<em>signature</em>, isbn)</p>
-<h3 id="Users-(user_id)"><strong>Users</strong> (<em>user_id</em>)<a class="anchor-link" href="#Users-(user_id)">¶</a></h3><p>→ <strong>Loans</strong> (<em>signature</em>, user_id, date_time, return, lib_passport)<br/>
-→ <strong>Posts</strong> (<em>user_id</em>, post_date, post, likes, dislikes, isbn)</p>
-<h3 id="Bibuses-(place)"><strong>Bibuses</strong> (<em>place</em>)<a class="anchor-link" href="#Bibuses-(place)">¶</a></h3><p>→ <strong>Routes</strong> (<em>route_id</em>, plate, stopdate, stoptime, town, province)</p>
-<h3 id="Towns-(town)"><strong>Towns</strong> (<em>town</em>)<a class="anchor-link" href="#Towns-(town)">¶</a></h3><p>→ <strong>Users</strong> (<em>user_id</em>, passport, email, name, surname1, surname2, birthdate, phone, address, province)</p>
-<h3 id="Library-Staff-(lib_passport)"><strong>Library Staff</strong> (<em>lib_passport</em>)<a class="anchor-link" href="#Library-Staff-(lib_passport)">¶</a></h3><p>→ <strong>Bibuses</strong> (<em>place</em>, last_itv, next_itv, lib_passport)<br/>
-→ <strong>Loans</strong> (<em>signature</em>, user_id, date_time, return, lib_passport)</p>
-<h3 id="Explanation-of-Notation"><strong>Explanation of Notation</strong><a class="anchor-link" href="#Explanation-of-Notation">¶</a></h3><ul>
-<li><strong>Primary Keys</strong> are in <strong>bold</strong>.</li>
-<li><strong>Foreign Keys</strong> are denoted using arrows (<code>→</code>).</li>
-<li><strong>Entities</strong> are written in uppercase.</li>
-<li><strong>Attributes</strong> are enclosed in parentheses.</li>
-<li><strong>Relations between tables</strong> follow the structure shown in the provided class notation.</li>
-</ul>
-<p>This notation provides a structured view of how entities are related in the relational schema while following the prescribed notation style.</p>
-<hr/>
 <h3 id="2.-Implicit-Semantics"><strong>2. Implicit Semantics</strong><a class="anchor-link" href="#2.-Implicit-Semantics">¶</a></h3><p>Semantic presuppositions that are not found in the explicit description but are required to complete the relational design.</p>
 <h4 id="Table-1:-Implicit-semantics-incorporated-into-the-relational-graph"><strong>Table 1: Implicit semantics incorporated into the relational graph</strong><a class="anchor-link" href="#Table-1:-Implicit-semantics-incorporated-into-the-relational-graph">¶</a></h4><table>
 <thead>
@@ -7893,7 +7875,6 @@ This structured approach ensures that the newly designed database meets the oper
 </tr>
 </tbody>
 </table>
-<hr/>
 <h3 id="3.-Non-Observed-Explicit-Semantics"><strong>3. Non-Observed Explicit Semantics</strong><a class="anchor-link" href="#3.-Non-Observed-Explicit-Semantics">¶</a></h3><p>Each of the explicit presuppositions (stated in the problem description) that could not be included in the relational graph will be identified (with a label, such as S1, S2, …) and described in this section.</p>
 <h4 id="Table-2:-Non-observed-explicit-semantics"><strong>Table 2: Non-observed explicit semantics</strong><a class="anchor-link" href="#Table-2:-Non-observed-explicit-semantics">¶</a></h4><table>
 <thead>
@@ -7966,14 +7947,12 @@ This structured approach ensures that the newly designed database meets the oper
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Relational-Statics-Implementation-in-SQL-(DDL)"><strong>Relational Statics Implementation in SQL (DDL)</strong><a class="anchor-link" href="#Relational-Statics-Implementation-in-SQL-(DDL)">¶</a></h2><p>This section must include the creation of each table. In addition to the code (<code>NEWcreation.sql</code> script) for creating tables (valid syntax in PL/SQL), you should include the corresponding subsections referring to:</p>
+<h2 id="Relational-Statics-Implementation-in-SQL-(DDL)"><strong>Relational Statics Implementation in SQL (DDL)</strong><a class="anchor-link" href="#Relational-Statics-Implementation-in-SQL-(DDL)">¶</a></h2><p>This section must include the creation of each table. In addition to the code (<code>NEWcreation.sql</code> script) for creating tables (valid syntax in PL/SQL), the following subsections are also covered for an indepth analysis of the Relational Statistics.</p>
 <ul>
 <li><strong>Excluded semantics that are re-incorporated</strong></li>
 <li><strong>Newly incorporated implicit semantics</strong></li>
 <li><strong>Explicit semantics that were observed but are now excluded</strong></li>
 </ul>
-<p>All these sections will be documented in tables (see Tables 3, 4, and 5). If any of these tables are empty, the table should be omitted and replaced by a phrase such as <strong>"Has not been reported."</strong></p>
-<h3 id="Re-incorporated-Semantics"><strong>Re-incorporated Semantics</strong><a class="anchor-link" href="#Re-incorporated-Semantics">¶</a></h3><p>(Identifiers refer to those assigned in Table 1)</p>
 <h4 id="Table-3:-Re-incorporated-explicit-semantics"><strong>Table 3: Re-incorporated explicit semantics</strong><a class="anchor-link" href="#Table-3:-Re-incorporated-explicit-semantics">¶</a></h4><table>
 <thead>
 <tr>
@@ -7983,20 +7962,27 @@ This structured approach ensures that the newly designed database meets the oper
 </thead>
 <tbody>
 <tr>
-<td>S1</td>
-<td>Field size is 9; a constraint (<code>constraint_name</code>) <code>CHECK (phone≥100000000)</code> is added to the table <code>&lt;table_name&gt;</code></td>
+<td><strong>S1</strong></td>
+<td>Field size is 9; a constraint (constraint_name) CHECK (phone &gt;= 100000000) is added to the table <code>Library_Staff</code>.</td>
 </tr>
 <tr>
-<td>…</td>
-<td>…</td>
+<td><strong>S2</strong></td>
+<td>A foreign key constraint is added between <code>Books</code> and <code>Editions</code> on <code>isbn</code>, which was excluded in previous versions of the schema but is now re-incorporated.</td>
 </tr>
 <tr>
-<td>…</td>
-<td>…</td>
+<td><strong>S3</strong></td>
+<td>A primary key constraint is added for the <code>Books</code> table using (title, pub_date).</td>
+</tr>
+<tr>
+<td><strong>S4</strong></td>
+<td>A primary key constraint is added for the <code>Publications</code> table using (isbn).</td>
+</tr>
+<tr>
+<td><strong>S5</strong></td>
+<td>A foreign key constraint between <code>Editions</code> and <code>Publications</code> is added on (isbn).</td>
 </tr>
 </tbody>
 </table>
-<h3 id="Incorporated-Implicit-Semantics"><strong>Incorporated Implicit Semantics</strong><a class="anchor-link" href="#Incorporated-Implicit-Semantics">¶</a></h3><p>(Numbering continues where ended in Table 2)</p>
 <h4 id="Table-4:-Implicit-semantics-incorporated-in-the-definition-of-each-table"><strong>Table 4: Implicit semantics incorporated in the definition of each table</strong><a class="anchor-link" href="#Table-4:-Implicit-semantics-incorporated-in-the-definition-of-each-table">¶</a></h4><table>
 <thead>
 <tr>
@@ -8008,22 +7994,34 @@ This structured approach ensures that the newly designed database meets the oper
 </thead>
 <tbody>
 <tr>
-<td>In+1</td>
-<td>Implem.</td>
+<td><strong>In+1</strong></td>
+<td>Implementation</td>
 <td>Check</td>
-<td>There is no age greater than 120 years old</td>
+<td>No phone number in <code>Library_Staff</code> should be less than 100000000.</td>
 </tr>
 <tr>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
+<td><strong>In+2</strong></td>
+<td>Implementation</td>
+<td>Foreign Key</td>
+<td>Foreign key relationship is established between <code>Users</code> and <code>Towns</code> based on (town, province).</td>
 </tr>
 <tr>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
+<td><strong>In+3</strong></td>
+<td>Implementation</td>
+<td>Check</td>
+<td><code>Books</code> table ensures no duplicate entries using a primary key on (title, pub_date).</td>
+</tr>
+<tr>
+<td><strong>In+4</strong></td>
+<td>Implementation</td>
+<td>Foreign Key</td>
+<td>Foreign key relationship is established between <code>Editions</code> and <code>Publications</code>.</td>
+</tr>
+<tr>
+<td><strong>In+5</strong></td>
+<td>Implementation</td>
+<td>Foreign Key</td>
+<td>Foreign key relationship is established between <code>Books</code> and <code>Editions</code> based on (title, pub_date).</td>
 </tr>
 </tbody>
 </table>
@@ -8038,22 +8036,28 @@ This structured approach ensures that the newly designed database meets the oper
 </thead>
 <tbody>
 <tr>
-<td>E1</td>
-<td>Contracts are automatically updated with the company’s update (integrity option <code>UC</code> on the FK referencing <code>Companies</code>).</td>
-<td>PL/SQL does not observe this integrity option</td>
+<td><strong>E1</strong></td>
+<td>The foreign key on <code>Loans</code> referencing <code>Copies</code> should enforce cascading updates, but PL/SQL does not support cascading updates for foreign keys in this case.</td>
+<td>PL/SQL does not support automatic cascading updates for foreign keys in this implementation.</td>
 <td>Implicit</td>
 </tr>
 <tr>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
+<td><strong>E2</strong></td>
+<td>The table should automatically check for the existence of 'books' before a loan is processed, but this check is excluded for simplicity.</td>
+<td>Design decision: Flexibility is needed for the processing of loans.</td>
+<td>Explicit</td>
 </tr>
 <tr>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
+<td><strong>E3</strong></td>
+<td>There should be automatic checks on loan duration (e.g., no loan can exceed a certain period), but this is excluded for flexibility.</td>
+<td>Design decision: No automatic enforcement of loan durations.</td>
+<td>Explicit</td>
+</tr>
+<tr>
+<td><strong>E4</strong></td>
+<td>The system should track the number of books borrowed per user automatically, but this is not implemented here.</td>
+<td>Design decision: No enforcement of automatic book count during loans.</td>
+<td>Explicit</td>
 </tr>
 </tbody>
 </table>
@@ -8080,24 +8084,6 @@ This structured approach ensures that the newly designed database meets the oper
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="Workload-Uploading-Process"><strong>Workload Uploading Process</strong><a class="anchor-link" href="#Workload-Uploading-Process">¶</a></h2><p>The workload upload process involves transferring data from the old database structure into the newly designed relational schema. The migration is carried out using the <code>NEWload.sql</code> script, which ensures that the data is properly formatted, constraints are enforced, and inconsistencies are handled effectively.</p>
 <h3 id="Order-of-Table-Population"><strong>Order of Table Population</strong><a class="anchor-link" href="#Order-of-Table-Population">¶</a></h3><p>To maintain referential integrity and avoid foreign key violations, data is uploaded in the following order:</p>
-<h4 id="Table-1:-Core-Tables-(Independent)"><strong>Table 1: Core Tables (Independent)</strong><a class="anchor-link" href="#Table-1:-Core-Tables-(Independent)">¶</a></h4><p>These tables store primary entities that do not rely on foreign key references:</p>
-<ol>
-<li><strong>Towns</strong> – Populated first as it provides location data for other entities.</li>
-<li><strong>Library_Staff</strong> – Independent records for library staff members.</li>
-<li><strong>Bibuses</strong> – Records for mobile libraries, which do not require prior dependencies.</li>
-<li><strong>Routes</strong> – Route information for bibuses, linked to towns.</li>
-<li><strong>Users</strong> – Must be inserted before loans or posts to maintain referential integrity.</li>
-<li><strong>Books</strong> – The core entity representing all bibliographic materials.</li>
-<li><strong>Publications</strong> – Stores editions of books, with unique ISBN constraints.</li>
-<li><strong>Editions</strong> – Contains additional metadata about book versions.</li>
-</ol>
-<h4 id="Table-2:-Dependent-Tables"><strong>Table 2: Dependent Tables</strong><a class="anchor-link" href="#Table-2:-Dependent-Tables">¶</a></h4><p>These tables rely on foreign keys from the core tables:</p>
-<ol>
-<li><strong>Copies</strong> – Requires <code>Editions</code> and <code>Books</code> to exist beforehand.</li>
-<li><strong>Loans</strong> – References <code>Users</code>, <code>Copies</code>, and <code>Library_Staff</code>, so they must be pre-populated.</li>
-<li><strong>Posts</strong> – Depends on <code>Users</code> and <code>Books</code> for book-related user interactions.</li>
-</ol>
-<hr/>
 </div>
 </div>
 </div>
